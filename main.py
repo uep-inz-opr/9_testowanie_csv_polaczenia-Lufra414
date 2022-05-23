@@ -31,7 +31,6 @@ class MenadzerPolaczen:
     return max(self.data_dict.items(), key= lambda x: x[1])
 
 if __name__ == "__main__":
-  nazwa_pliku = input()
-  mp = MenadzerPolaczen(input)
+  mp = MenadzerPolaczen(input())
   wynik = mp.pobierz_najczesciej_dzwoniacego()
   print (wynik)
