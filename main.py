@@ -1,23 +1,22 @@
+import csv
 import unittest
 from unittest import TestCase
-import csv
 
 class SprawdzDzwoniacegoTest(TestCase):
   def test_czy_abonent_najczesciej_dzwoniacy_rozpoznany_poprawnie(self):
     mp = MenadzerPolaczen("phoneCalls.csv")
     wynik = mp.pobierz_najczesciej_dzwoniacego()
     self.assertEqual((226, 5), wynik)
-
-
+    
 class MenadzerPolaczen:
   def __init__(self, filename):
-    self.filenaCme = filename
+    self.filename = filename
     self.data_dict = self.read_data()
 
   def read_data(self):
     calls_dict_sum = dict()
     with open(self.filename, 'r') as fin:
-      reader = csv.reader(fin, delimiter= ",")
+      reader = csv.reader(fin, delimiter=",")
       headers = next(reader)
 
       for row in reader:
@@ -28,7 +27,7 @@ class MenadzerPolaczen:
     return calls_dict_sum
 
   def pobierz_najczesciej_dzwoniacego(self):
-    return max(self.data_dict.items(), key= lambda x: x[1])
+    return max(self.data_dict.items(), key=lambda x: x[1])
 
 if __name__ == "__main__":
   mp = MenadzerPolaczen(input())
